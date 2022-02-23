@@ -1,3 +1,17 @@
+*  {
+    margin: 0px;
+}
+
+header {
+    box-sizing: border-box;
+    background-color: maroon;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    justify-content: center;
+    padding: 15px;
+}
+
 body {
     background-color: black;
     color: white;
