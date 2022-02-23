@@ -1,4 +1,4 @@
 let phrase = document.createElement("h2");
-phrase.innerText("this test works");
+phrase.innerHTML = 'test'
 
 document.body.appendChild(phrase);
