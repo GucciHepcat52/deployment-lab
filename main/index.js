@@ -1,4 +1,11 @@
-let phrase = document.createElement("h2");
-phrase.innerHTML = 'test'
+const form = document.querySelector("form");
 
-document.body.appendChild(phrase);
+const buttonAlert = (event) => {
+  event.preventDefault();
+
+  let inputValue = input.value;
+  alert(`Your favorite class is ${inputValue}`);
+  console.log("button hit");
+};
+
+form.addEventListener("submit", buttonAlert);
