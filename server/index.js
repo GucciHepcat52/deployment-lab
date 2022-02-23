@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../main/index.html"));
 });
 
-app.get("/js", (req, res) => {
+app.get("/main/index.js", (req, res) => {
   res.sendFile(path.join(__dirname, "../main/index.js"));
 });
 
