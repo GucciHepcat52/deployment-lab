@@ -1,5 +1,5 @@
 const form = document.querySelector("form");
-const input = document.getElementById("#input")
+const input = document.getElementById("input")
 
 const submitHandler = (event) => {
   event.preventDefault();
