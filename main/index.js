@@ -1,11 +1,13 @@
 const form = document.querySelector("form");
+const input = document.querySelector("input")
 
-const buttonAlert = (event) => {
+const submitHandler = (event) => {
   event.preventDefault();
 
-  let inputValue = input.value;
-  alert(`Your favorite class is ${inputValue}`);
-  console.log("button hit");
+  axios
+    .post("/api/classes", { class: input.value })
+    .then((res) => console.log(res))
+    .catch((error) => console.log(error));
 };
 
-form.addEventListener("submit", buttonAlert);
+form.addEventListener("submit", submitHandler);

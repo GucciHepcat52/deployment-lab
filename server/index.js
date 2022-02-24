@@ -1,10 +1,6 @@
 const express = require("express");
 const path = require("path");
 
-const app = express();
-
-app.use(express.json());
-
 // include and initialize the rollbar library with your access token
 const Rollbar = require("rollbar");
 const rollbar = new Rollbar({
@@ -16,13 +12,9 @@ const rollbar = new Rollbar({
 // record a generic message and send it to Rollbar
 rollbar.log("Hello world!");
 
-app.get("/", (req, res) => {
-  try {
-    res.send(path.join(__dirname, "../index.js"));
-  } catch (error) {
-    console.log(error);
-  }
-});
+const app = express();
+
+app.use(express.json(""));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../main/index.html"));
@@ -34,6 +26,23 @@ app.get("/main/index.js", (req, res) => {
 
 app.get("/main/index.css", (req, res) => {
   res.sendFile(path.join(__dirname, "../main/index.css"));
+});
+
+let classes = [];
+
+app.post("/api/classes", (req, res) => {
+  let { className } = req.body;
+  className = className.trim();
+
+  classes.push(className);
+
+  rollbar.log("class was added successfully", {
+    author: "Dallin",
+    type: "manual",
+    student: className,
+  });
+
+  res.status(200).send(classes);
 });
 
 const port = process.env.PORT || 4005;
