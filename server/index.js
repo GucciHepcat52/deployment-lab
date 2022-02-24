@@ -46,10 +46,10 @@ app.post("/api/classes", (req, res) => {
     });
     res.status(200).send(classes);
   } else if (type === "") {
-    rollbar.error("No class given");
+    rollbar.warning("No class given");
     res.status(400).send("must give a favorite class");
   } else {
-    rollbar.warning("Class already present");
+    rollbar.critical("Class already present");
     res.status(400).send("need a different class. class already found");
   }
 });
