@@ -31,15 +31,15 @@ app.get("/main/index.css", (req, res) => {
 let classes = [];
 
 app.post("/api/classes", (req, res) => {
-  let { className } = req.body;
-  className = className.trim();
+  let { type } = req.body;
+  type = type.trim();
 
-  classes.push(className);
+  classes.push(type);
 
   rollbar.log("class was added successfully", {
     author: "Dallin",
     type: "manual",
-    student: className,
+    classType: type,
   });
 
   res.status(200).send(classes);

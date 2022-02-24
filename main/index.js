@@ -1,11 +1,11 @@
 const form = document.querySelector("form");
-const input = document.querySelector("input")
+const input = document.getElementById("#input")
 
 const submitHandler = (event) => {
   event.preventDefault();
 
   axios
-    .post("/api/classes", { class: input.value })
+    .post("/api/classes", { type: input.value })
     .then((res) => console.log(res))
     .catch((error) => console.log(error));
 };
