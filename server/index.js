@@ -4,7 +4,7 @@ const path = require("path");
 // include and initialize the rollbar library with your access token
 const Rollbar = require("rollbar");
 const rollbar = new Rollbar({
-  accessToken: "9dce5bb2692c4f70820bd5679812911e",
+  accessToken: "POST_SERVER_ITEM_ACCESS_TOKEN",
   captureUncaught: true,
   captureUnhandledRejections: true,
 });
@@ -34,15 +34,24 @@ app.post("/api/classes", (req, res) => {
   let { type } = req.body;
   type = type.trim();
 
-  classes.push(type);
+  const index = classes.findIndex((className) => className === type);
 
-  rollbar.log("class was added successfully", {
-    author: "Dallin",
-    type: "manual",
-    classType: type,
-  });
+  if (index === -1 && type !== "") {
+    classes.push(type);
 
-  res.status(200).send(classes);
+    rollbar.log("class was added successfully", {
+      author: "Dallin",
+      type: "manual",
+      classType: type,
+    });
+    res.status(200).send(classes);
+  } else if (type === "") {
+    rollbar.error("No class given");
+    res.status(400).send("must give a favorite class");
+  } else {
+    rollbar.warning("Class already present");
+    res.status(400).send("need a different class. class already found");
+  }
 });
 
 const port = process.env.PORT || 4005;
