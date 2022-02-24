@@ -34,10 +34,38 @@ body {
     width: 300px;
     padding: 20px;
     align-self: center;
+    margin-bottom: 20px;
 }
 
 form {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+}
+
+#show-classes-button-div {
+    box-sizing: border-box;
+    height: 50px;
+    width: 100%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#show-classes-button-div > button {
+    border-radius: 10px;
+    align-self: center;
+}
+
+.class-display {
+    box-sizing: border-box;
+    background-color: white;
+    border: 5px maroon solid;
+    padding: 20px;
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    align-self: center;
+    display: flex;
 }
