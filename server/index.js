@@ -15,18 +15,7 @@ rollbar.log("Hello world!");
 const app = express();
 
 app.use(express.json(""));
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../main/index.html"));
-});
-
-app.get("/main/index.js", (req, res) => {
-  res.sendFile(path.join(__dirname, "../main/index.js"));
-});
-
-app.get("/main/index.css", (req, res) => {
-  res.sendFile(path.join(__dirname, "../main/index.css"));
-});
+app.use(express.static(path.join(__dirname, "/../main")));
 
 let classes = [];
 
